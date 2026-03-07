@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BZMTECH — Vente &amp; Réparation Téléphones et PC | Massa</title>
+    <meta name="description" content="BZMTECH Massa — Expert en vente, réparation de téléphones et PC. Reprise en magasin. Note Google 5.0/5 ★ 26 avis.">
+    <meta name="theme-color" content="#050508">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ====== SCROLL PROGRESS BAR ====== -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- ====== MAGIC BACKGROUND ====== -->
+    <div class="mesh-bg" aria-hidden="true">
+        <div class="mesh-orb"></div>
+        <div class="mesh-orb"></div>
+        <div class="mesh-orb"></div>
+    </div>
+    <div class="magic-particles" aria-hidden="true">
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+        <div class="particle"></div><div class="particle"></div>
+    </div>
+
+    <!-- ====== BINARY RAIN (Matrix) ====== -->
+    <div class="binary-rain" aria-hidden="true" id="binaryRain"></div>
+
+    <!-- ====== PROVISIONAL BANNER ====== -->
+    <div class="prov-banner" id="provBanner">
+        <i class="fas fa-bolt"></i>
+        <span class="hl">Site provisoire</span> — Notre site officiel arrive bientôt. Restez connectés !
+    </div>
+
+    <!-- ====== NAVBAR ====== -->
+    <nav class="navbar has-banner" id="navbar">
+        <div class="container navbar-inner">
+            <a href="#" class="logo">
+                <img src="media/BZMTECH LOGO.png" alt="BZMTECH" class="logo-img">
+                <div class="logo-text">BZM<span>TECH</span></div>
+            </a>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ====== MOBILE MENU (outside navbar to avoid stacking context) ====== -->
+    <div class="nav-overlay" id="navOverlay"></div>
+    <div class="nav-menu" id="navMenu">
+        <div class="nav-menu-header">
+            <div class="nav-menu-brand">
+                <img src="media/BZMTECH LOGO.png" alt="BZMTECH" class="nav-menu-logo">
+                <span class="nav-menu-title">BZM<span>TECH</span></span>
+            </div>
+            <button class="nav-close" id="navClose" aria-label="Fermer le menu">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <nav class="nav-menu-links">
+            <a href="#magasin"><i class="fas fa-store"></i> Magasin</a>
+            <a href="#services"><i class="fas fa-wrench"></i> Services</a>
+            <a href="#marques"><i class="fas fa-tags"></i> Marques</a>
+            <a href="#avis"><i class="fas fa-star"></i> Avis</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        </nav>
+        <div class="nav-menu-footer">
+            <a href="tel:0645172414" class="nav-cta-mobile"><i class="fas fa-phone"></i> Appelez-nous</a>
+            <a href="tel:0612143069" class="nav-cta-secondary"><i class="fas fa-phone-volume"></i> 06 12 14 30 69</a>
+            <div class="nav-menu-socials">
+                <a href="https://www.instagram.com/bzm_tech/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://maps.app.goo.gl/PQgLt9Gh7u77i8QaA" target="_blank" rel="noopener" aria-label="Google"><i class="fab fa-google"></i></a>
+            </div>
+            <p class="nav-menu-address"><i class="fas fa-location-dot"></i> Rue Principale Elkharij, Massa</p>
+        </div>
+    </div>
+
+    <!-- ====== HERO ====== -->
+    <section class="hero" id="hero">
+        <div class="deco-ring r1"></div>
+        <div class="deco-ring r2"></div>
+        <!-- Enigma circuit lines -->
+        <svg class="enigma-circuit ec-hero" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+            <path d="M10 100 H80 L100 80 H160 L180 100 H190" stroke="var(--neon)" stroke-width="1" stroke-dasharray="6 4" opacity="0.15"><animate attributeName="stroke-dashoffset" from="0" to="-40" dur="3s" repeatCount="indefinite"/></path>
+            <circle cx="100" cy="80" r="3" fill="var(--neon)" opacity="0.3"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="180" cy="100" r="3" fill="var(--violet)" opacity="0.3"><animate attributeName="opacity" values="0.1;0.5;0.1" dur="2.5s" repeatCount="indefinite"/></circle>
+        </svg>
+        <svg class="enigma-circuit ec-hero-br" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+            <path d="M190 10 V60 L170 80 V140 L150 160 V190" stroke="var(--violet)" stroke-width="1" stroke-dasharray="6 4" opacity="0.12"><animate attributeName="stroke-dashoffset" from="0" to="-40" dur="4s" repeatCount="indefinite"/></path>
+            <rect x="145" y="155" width="10" height="10" rx="2" fill="none" stroke="var(--hot)" stroke-width="0.8" opacity="0.2"><animate attributeName="opacity" values="0.1;0.4;0.1" dur="3s" repeatCount="indefinite"/></rect>
+        </svg>
+        <!-- Floating phone SVG illustration -->
+        <svg class="tech-illust tech-phone" viewBox="0 0 80 140" fill="none" aria-hidden="true">
+            <rect x="8" y="4" width="64" height="132" rx="12" fill="none" stroke="var(--neon)" stroke-width="1" opacity="0.12"/>
+            <rect x="14" y="18" width="52" height="90" rx="4" fill="none" stroke="var(--neon)" stroke-width="0.6" opacity="0.08"/>
+            <circle cx="40" cy="122" r="6" fill="none" stroke="var(--neon)" stroke-width="0.6" opacity="0.1"/>
+            <line x1="30" y1="10" x2="50" y2="10" stroke="var(--violet)" stroke-width="1" stroke-linecap="round" opacity="0.15"/>
+            <rect x="20" y="28" width="40" height="4" rx="2" fill="var(--neon)" opacity="0.05"><animate attributeName="opacity" values="0.02;0.08;0.02" dur="3s" repeatCount="indefinite"/></rect>
+            <rect x="20" y="38" width="30" height="3" rx="1.5" fill="var(--violet)" opacity="0.04"/>
+            <rect x="20" y="48" width="35" height="3" rx="1.5" fill="var(--neon)" opacity="0.04"/>
+            <rect x="20" y="58" width="25" height="3" rx="1.5" fill="var(--hot)" opacity="0.04"/>
+            <!-- Signal waves -->
+            <path d="M58 6 Q64 0 70 6" stroke="var(--neon)" stroke-width="0.6" fill="none" opacity="0.1"><animate attributeName="opacity" values="0.05;0.15;0.05" dur="2s" repeatCount="indefinite"/></path>
+            <path d="M56 2 Q66 -6 76 2" stroke="var(--neon)" stroke-width="0.4" fill="none" opacity="0.06"><animate attributeName="opacity" values="0.03;0.1;0.03" dur="2s" repeatCount="indefinite" begin="0.3s"/></path>
+        </svg>
+        <!-- Floating laptop SVG illustration -->
+        <svg class="tech-illust tech-laptop" viewBox="0 0 160 110" fill="none" aria-hidden="true">
+            <rect x="20" y="5" width="120" height="80" rx="6" fill="none" stroke="var(--violet)" stroke-width="1" opacity="0.1"/>
+            <rect x="28" y="13" width="104" height="64" rx="2" fill="none" stroke="var(--violet)" stroke-width="0.5" opacity="0.07"/>
+            <path d="M10 90 L20 85 H140 L150 90 H10Z" fill="none" stroke="var(--violet)" stroke-width="0.8" opacity="0.1"/>
+            <line x1="10" y1="90" x2="150" y2="90" stroke="var(--violet)" stroke-width="1" opacity="0.12"/>
+            <!-- Screen content lines -->
+            <rect x="36" y="22" width="50" height="3" rx="1.5" fill="var(--neon)" opacity="0.05"/>
+            <rect x="36" y="30" width="40" height="3" rx="1.5" fill="var(--violet)" opacity="0.04"/>
+            <rect x="36" y="38" width="55" height="3" rx="1.5" fill="var(--hot)" opacity="0.03"/>
+            <rect x="36" y="46" width="35" height="3" rx="1.5" fill="var(--neon)" opacity="0.04"/>
+            <!-- Terminal cursor -->
+            <rect x="36" y="56" width="8" height="10" rx="1" fill="var(--neon)" opacity="0.06"><animate attributeName="opacity" values="0.02;0.1;0.02" dur="1s" repeatCount="indefinite"/></rect>
+            <!-- Power LED -->
+            <circle cx="80" cy="8" r="1.5" fill="var(--neon)" opacity="0.2"><animate attributeName="opacity" values="0.1;0.35;0.1" dur="2s" repeatCount="indefinite"/></circle>
+        </svg>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-tag hero-stagger">
+                    <span class="dot"></span>
+                    5.0 ★ GOOGLE — 26 AVIS VÉRIFIÉS
+                </div>
+
+                <h1 class="hero-title hero-stagger">
+                    <span class="line"><span class="line-inner"><span class="word-hover" data-text="Vente.">Vente.</span> <span class="word-hover neon-outline" data-text="Réparation.">Réparation.</span></span></span>
+                    <span class="line"><span class="line-inner"><span class="neon-fill">Reprise.</span></span></span>
+                    <span class="line"><span class="line-inner">Votre tech, notre <span class="word-hover" data-text="métier">métier</span><span class="typed-cursor">_</span></span></span>
+                </h1>
+
+                <p class="hero-desc hero-stagger">
+                    Smartphones, PC portables, accessoires — vente, réparation et reprise de vos appareils. Service expert à Massa depuis le premier jour.
+                </p>
+
+                <div class="hero-actions hero-stagger">
+                    <a href="https://wa.me/212645172414?text=Bonjour%20BZMTECH%2C%20je%20souhaite%20des%20informations." class="btn-3d btn-wa" target="_blank">
+                        <span class="btn-shimmer"></span>
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="tel:0645172414" class="btn-3d btn-neon">
+                        <span class="btn-shimmer"></span>
+                        <i class="fas fa-phone"></i> 06 45 17 24 14
+                    </a>
+                    <a href="#services" class="btn-3d btn-ghost">
+                        <span class="btn-shimmer"></span>
+                        Découvrir <i class="fas fa-arrow-down"></i>
+                    </a>
+                </div>
+
+                <div class="hero-metrics hero-stagger">
+                    <div class="metric">
+                        <div class="metric-val" data-target="5.0">0<span class="unit"> ★</span></div>
+                        <div class="metric-lbl">Note Google</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-val" data-target="26">0<span class="unit">+</span></div>
+                        <div class="metric-lbl">Avis clients</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-val" data-target="100">0<span class="unit">%</span></div>
+                        <div class="metric-lbl">Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desktop: floating SVG illustration -->
+            <div class="hero-visual hero-stagger">
+                <div class="hero-illust" id="heroCard">
+                    <svg width="100%" viewBox="0 0 420 480" fill="none" style="max-width:420px">
+                        <defs>
+                            <linearGradient id="cardGrad" x1="0" y1="0" x2="420" y2="0">
+                                <stop offset="0%" stop-color="#00e5ff"/>
+                                <stop offset="50%" stop-color="#a855f7"/>
+                                <stop offset="100%" stop-color="#ff3d8f"/>
+                            </linearGradient>
+                            <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                        </defs>
+                        <!-- Card body -->
+                        <rect x="1" y="4" width="418" height="472" rx="24" fill="#0a0b10" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+                        <rect x="0" y="0" width="420" height="4" rx="24" fill="url(#cardGrad)"/>
+                        <!-- Header -->
+                        <circle cx="56" cy="52" r="24" fill="rgba(0,229,255,0.08)"/>
+                        <text x="56" y="58" text-anchor="middle" font-size="20" fill="#00e5ff" filter="url(#glow)">⚡</text>
+                        <text x="92" y="46" font-family="Space Grotesk,sans-serif" font-size="15" font-weight="700" fill="#edf0f7">Nos Services</text>
+                        <text x="92" y="62" font-family="Inter,sans-serif" font-size="10" fill="#4e5470">BZMTECH — Massa</text>
+                        <line x1="24" y1="84" x2="396" y2="84" stroke="rgba(255,255,255,0.04)"/>
+                        <!-- Items -->
+                        <circle cx="40" cy="116" r="4" fill="#00e5ff" filter="url(#glow)"/><text x="56" y="120" font-family="Inter,sans-serif" font-size="12.5" fill="#8890a8">Vente de téléphones &amp; accessoires</text>
+                        <circle cx="40" cy="150" r="4" fill="#00e5ff" filter="url(#glow)"/><text x="56" y="154" font-family="Inter,sans-serif" font-size="12.5" fill="#8890a8">Vente de PC portables &amp; bureau</text>
+                        <circle cx="40" cy="184" r="4" fill="#a855f7" filter="url(#glow)"/><text x="56" y="188" font-family="Inter,sans-serif" font-size="12.5" fill="#8890a8">Réparation toutes marques</text>
+                        <circle cx="40" cy="218" r="4" fill="#a855f7" filter="url(#glow)"/><text x="56" y="222" font-family="Inter,sans-serif" font-size="12.5" fill="#8890a8">Reprise de vos anciens appareils</text>
+                        <circle cx="40" cy="252" r="4" fill="#ff3d8f" filter="url(#glow)"/><text x="56" y="256" font-family="Inter,sans-serif" font-size="12.5" fill="#8890a8">Accessoires &amp; smart watches</text>
+                        <circle cx="40" cy="286" r="4" fill="#ff3d8f" filter="url(#glow)"/><text x="56" y="290" font-family="Inter,sans-serif" font-size="12.5" fill="#8890a8">Diagnostic &amp; récupération données</text>
+                        <line x1="24" y1="314" x2="396" y2="314" stroke="rgba(255,255,255,0.04)"/>
+                        <!-- Stars -->
+                        <text x="24" y="348" font-size="18" fill="#ffd600">★ ★ ★ ★ ★</text>
+                        <text x="165" y="348" font-family="Inter,sans-serif" font-size="11" fill="#4e5470">5.0 / 5 — Google Reviews</text>
+                        <!-- Bottom metrics -->
+                        <rect x="24" y="374" width="118" height="80" rx="12" fill="rgba(0,229,255,0.06)" stroke="rgba(0,229,255,0.1)" stroke-width="1"/>
+                        <text x="83" y="408" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" fill="#00e5ff">500+</text>
+                        <text x="83" y="434" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4e5470">Appareils vendus</text>
+                        <rect x="152" y="374" width="118" height="80" rx="12" fill="rgba(168,85,247,0.06)" stroke="rgba(168,85,247,0.1)" stroke-width="1"/>
+                        <text x="211" y="408" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" fill="#a855f7">100%</text>
+                        <text x="211" y="434" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4e5470">Satisfaction</text>
+                        <rect x="280" y="374" width="118" height="80" rx="12" fill="rgba(255,61,143,0.06)" stroke="rgba(255,61,143,0.1)" stroke-width="1"/>
+                        <text x="339" y="408" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" fill="#ff3d8f">24h</text>
+                        <text x="339" y="434" text-anchor="middle" font-family="Inter,sans-serif" font-size="9" fill="#4e5470">Délai moyen</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== STORE GALLERY ====== -->
+    <section class="store-gallery" id="magasin">
+        <!-- Enigma radar sweep -->
+        <svg class="enigma-radar" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <circle cx="50" cy="50" r="40" stroke="var(--neon)" stroke-width="0.4" opacity="0.06"/>
+            <circle cx="50" cy="50" r="25" stroke="var(--neon)" stroke-width="0.4" opacity="0.05"/>
+            <circle cx="50" cy="50" r="10" stroke="var(--neon)" stroke-width="0.4" opacity="0.04"/>
+            <line x1="50" y1="10" x2="50" y2="90" stroke="var(--neon)" stroke-width="0.3" opacity="0.04"/>
+            <line x1="10" y1="50" x2="90" y2="50" stroke="var(--neon)" stroke-width="0.3" opacity="0.04"/>
+            <line x1="50" y1="50" x2="50" y2="10" stroke="var(--neon)" stroke-width="1" opacity="0.15" stroke-linecap="round">
+                <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="4s" repeatCount="indefinite"/>
+            </line>
+        </svg>
+        <!-- Chip / Motherboard illustration -->
+        <svg class="tech-illust tech-chip" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <rect x="25" y="25" width="50" height="50" rx="4" fill="none" stroke="var(--neon)" stroke-width="0.8" opacity="0.1"/>
+            <rect x="32" y="32" width="36" height="36" rx="2" fill="none" stroke="var(--violet)" stroke-width="0.5" opacity="0.07"/>
+            <text x="50" y="54" text-anchor="middle" font-family="var(--mono)" font-size="7" fill="var(--neon)" opacity="0.1">CPU</text>
+            <!-- Pins -->
+            <line x1="30" y1="25" x2="30" y2="12" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="40" y1="25" x2="40" y2="12" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="50" y1="25" x2="50" y2="12" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="60" y1="25" x2="60" y2="12" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="70" y1="25" x2="70" y2="12" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="30" y1="75" x2="30" y2="88" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="40" y1="75" x2="40" y2="88" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="50" y1="75" x2="50" y2="88" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="60" y1="75" x2="60" y2="88" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="70" y1="75" x2="70" y2="88" stroke="var(--neon)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="25" y1="35" x2="12" y2="35" stroke="var(--violet)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="25" y1="50" x2="12" y2="50" stroke="var(--violet)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="25" y1="65" x2="12" y2="65" stroke="var(--violet)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="75" y1="35" x2="88" y2="35" stroke="var(--violet)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="75" y1="50" x2="88" y2="50" stroke="var(--violet)" stroke-width="0.5" opacity="0.08"/>
+            <line x1="75" y1="65" x2="88" y2="65" stroke="var(--violet)" stroke-width="0.5" opacity="0.08"/>
+            <!-- Data pulse -->
+            <circle cx="30" cy="12" r="1.5" fill="var(--neon)" opacity="0.15"><animate attributeName="r" values="1;2.5;1" dur="2s" repeatCount="indefinite"/></circle>
+            <circle cx="88" cy="50" r="1.5" fill="var(--violet)" opacity="0.15"><animate attributeName="r" values="1;2.5;1" dur="2.5s" repeatCount="indefinite"/></circle>
+        </svg>
+        <div class="container">
+            <div class="sec-header reveal">
+                <div class="sec-label">Notre Magasin</div>
+                <h2 class="sec-title">Bienvenue chez <span class="glow" data-text="BZMTECH">BZMTECH</span></h2>
+                <p class="sec-sub">Un espace dédié à la tech au cœur de Massa. Découvrez l'intérieur de notre magasin.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item reveal from-left" onclick="openLightbox(this)">
+                    <div class="scan-ring"></div>
+                    <img src="media/store-1.jpg" alt="Intérieur magasin BZMTECH - Vue 1" loading="lazy">
+                    <div class="gallery-caption">
+                        <span class="tag">Magasin</span>
+                        <h3>BZMTECH — Espace principal</h3>
+                        <p>Rue Principale Elkharij Massa</p>
+                    </div>
+                </div>
+                <div class="gallery-item reveal from-right" onclick="openLightbox(this)">
+                    <div class="scan-ring"></div>
+                    <img src="media/store-2.jpg" alt="Intérieur magasin BZMTECH - Vue 2" loading="lazy">
+                    <div class="gallery-caption">
+                        <span class="tag">Produits</span>
+                        <h3>BZMTECH — Espace produits</h3>
+                        <p>Téléphones, PC &amp; Accessoires</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== BRANDS MARQUEE ====== -->
+    <section class="brands" id="marques">
+        <!-- Electromagnetic wave -->
+        <svg class="tech-illust tech-wave" viewBox="0 0 300 40" fill="none" aria-hidden="true">
+            <path d="M0 20 Q25 0 50 20 Q75 40 100 20 Q125 0 150 20 Q175 40 200 20 Q225 0 250 20 Q275 40 300 20" stroke="var(--neon)" stroke-width="0.5" fill="none" opacity="0.06" stroke-dasharray="8 4"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="3s" repeatCount="indefinite"/></path>
+        </svg>
+        <div class="brands-label reveal blur-in">Marques disponibles en magasin</div>
+        <div class="marquee-wrap reveal from-left d1">
+            <div class="marquee-track">
+                <span class="brand-word">Apple</span><span class="brand-sep">·</span>
+                <span class="brand-word">Samsung</span><span class="brand-sep">·</span>
+                <span class="brand-word">Xiaomi</span><span class="brand-sep">·</span>
+                <span class="brand-word">Huawei</span><span class="brand-sep">·</span>
+                <span class="brand-word">Oppo</span><span class="brand-sep">·</span>
+                <span class="brand-word">Realme</span><span class="brand-sep">·</span>
+                <span class="brand-word">Vivo</span><span class="brand-sep">·</span>
+                <span class="brand-word">OnePlus</span><span class="brand-sep">·</span>
+                <span class="brand-word">Lenovo</span><span class="brand-sep">·</span>
+                <span class="brand-word">Apple</span><span class="brand-sep">·</span>
+                <span class="brand-word">Samsung</span><span class="brand-sep">·</span>
+                <span class="brand-word">Xiaomi</span><span class="brand-sep">·</span>
+                <span class="brand-word">Huawei</span><span class="brand-sep">·</span>
+                <span class="brand-word">Oppo</span><span class="brand-sep">·</span>
+                <span class="brand-word">Realme</span><span class="brand-sep">·</span>
+                <span class="brand-word">Vivo</span><span class="brand-sep">·</span>
+                <span class="brand-word">OnePlus</span><span class="brand-sep">·</span>
+                <span class="brand-word">Lenovo</span><span class="brand-sep">·</span>
+            </div>
+        </div>
+        <div class="marquee-wrap reveal from-right d2">
+            <div class="marquee-track reverse">
+                <span class="brand-word">HP</span><span class="brand-sep">·</span>
+                <span class="brand-word">Dell</span><span class="brand-sep">·</span>
+                <span class="brand-word">Asus</span><span class="brand-sep">·</span>
+                <span class="brand-word">Acer</span><span class="brand-sep">·</span>
+                <span class="brand-word">Nokia</span><span class="brand-sep">·</span>
+                <span class="brand-word">Google</span><span class="brand-sep">·</span>
+                <span class="brand-word">Sony</span><span class="brand-sep">·</span>
+                <span class="brand-word">MSI</span><span class="brand-sep">·</span>
+                <span class="brand-word">Toshiba</span><span class="brand-sep">·</span>
+                <span class="brand-word">HP</span><span class="brand-sep">·</span>
+                <span class="brand-word">Dell</span><span class="brand-sep">·</span>
+                <span class="brand-word">Asus</span><span class="brand-sep">·</span>
+                <span class="brand-word">Acer</span><span class="brand-sep">·</span>
+                <span class="brand-word">Nokia</span><span class="brand-sep">·</span>
+                <span class="brand-word">Google</span><span class="brand-sep">·</span>
+                <span class="brand-word">Sony</span><span class="brand-sep">·</span>
+                <span class="brand-word">MSI</span><span class="brand-sep">·</span>
+                <span class="brand-word">Toshiba</span><span class="brand-sep">·</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SERVICES ====== -->
+    <section class="services" id="services">
+        <!-- Enigma floating code snippet -->
+        <div class="enigma-code" aria-hidden="true">
+            <span>&lt;service&gt;</span>
+            <span>&nbsp;&nbsp;type: <em>"expert"</em></span>
+            <span>&nbsp;&nbsp;quality: <em>100%</em></span>
+            <span>&lt;/service&gt;</span>
+        </div>
+        <!-- Enigma hex grid -->
+        <svg class="enigma-hex" viewBox="0 0 120 140" fill="none" aria-hidden="true">
+            <polygon points="60,5 110,32 110,88 60,115 10,88 10,32" fill="none" stroke="var(--neon)" stroke-width="0.6" opacity="0.08"><animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="40s" repeatCount="indefinite"/></polygon>
+            <polygon points="60,20 95,40 95,80 60,100 25,80 25,40" fill="none" stroke="var(--violet)" stroke-width="0.6" opacity="0.06"><animateTransform attributeName="transform" type="rotate" from="360 60 60" to="0 60 60" dur="35s" repeatCount="indefinite"/></polygon>
+        </svg>
+        <!-- Wrench + gear repair illustration -->
+        <svg class="tech-illust tech-repair" viewBox="0 0 120 120" fill="none" aria-hidden="true">
+            <circle cx="50" cy="50" r="25" fill="none" stroke="var(--hot)" stroke-width="0.6" opacity="0.08"/>
+            <!-- Gear teeth -->
+            <path d="M50 22 L53 28 L47 28 Z" fill="var(--hot)" opacity="0.06"/>
+            <path d="M50 78 L53 72 L47 72 Z" fill="var(--hot)" opacity="0.06"/>
+            <path d="M22 50 L28 53 L28 47 Z" fill="var(--hot)" opacity="0.06"/>
+            <path d="M78 50 L72 53 L72 47 Z" fill="var(--hot)" opacity="0.06"/>
+            <circle cx="50" cy="50" r="12" fill="none" stroke="var(--hot)" stroke-width="0.5" opacity="0.06"/>
+            <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/>
+            <!-- Wrench -->
+            <path d="M75 80 L95 100 L100 95 L80 75" stroke="var(--neon)" stroke-width="1" stroke-linecap="round" fill="none" opacity="0.08"/>
+            <circle cx="75" cy="80" r="5" fill="none" stroke="var(--neon)" stroke-width="0.6" opacity="0.06"/>
+        </svg>
+        <!-- Second code block -->
+        <div class="enigma-code ec2" aria-hidden="true">
+            <span>$ diagnostic --run</span>
+            <span>&gt; scanning... <em>OK</em></span>
+            <span>&gt; battery: <em>98%</em></span>
+            <span>&gt; screen: <em>perfect</em></span>
+            <span>$ _<span class="blink-cursor">|</span></span>
+        </div>
+        <div class="container">
+            <div class="sec-header center reveal">
+                <div class="sec-label">Services</div>
+                <h2 class="sec-title">Ce que nous <span class="glow" data-text="faisons">faisons</span></h2>
+                <p class="sec-sub">Vente, réparation et reprise — un service complet pour tous vos appareils.</p>
+            </div>
+            <div class="services-grid">
+                <div class="svc-card reveal flip-up d1">
+                    <div class="svc-glow"></div>
+                    <div class="svc-big-num">01</div>
+                    <div class="svc-icon"><i class="fas fa-mobile-alt"></i><div class="ring"></div></div>
+                    <div class="svc-tag t1">Vente</div>
+                    <h3>Vente de Téléphones</h3>
+                    <p>Smartphones neufs et reconditionnés de toutes les grandes marques à des prix compétitifs.</p>
+                    <ul class="svc-list">
+                        <li><span class="li-dot"></span> Samsung, iPhone, Xiaomi, Oppo...</li>
+                        <li><span class="li-dot"></span> Garantie sur tous les produits</li>
+                        <li><span class="li-dot"></span> Accessoires &amp; smart watches</li>
+                        <li><span class="li-dot"></span> Prix imbattables</li>
+                    </ul>
+                    <div class="svc-footer"><span class="svc-stat" data-target="500">0</span><span class="svc-stat-lbl">+ appareils vendus</span></div>
+                </div>
+                <div class="svc-card reveal flip-up d2">
+                    <div class="svc-glow"></div>
+                    <div class="svc-big-num">02</div>
+                    <div class="svc-icon"><i class="fas fa-laptop"></i><div class="ring"></div></div>
+                    <div class="svc-tag t2">Réparation</div>
+                    <h3>Vente &amp; Réparation PC</h3>
+                    <p>PC portables, ordinateurs de bureau et composants. Diagnostic et réparation par des experts.</p>
+                    <ul class="svc-list">
+                        <li><span class="li-dot"></span> Portables &amp; desktops</li>
+                        <li><span class="li-dot"></span> Réparation hardware &amp; software</li>
+                        <li><span class="li-dot"></span> Mise à niveau &amp; optimisation</li>
+                        <li><span class="li-dot"></span> Récupération de données</li>
+                    </ul>
+                    <div class="svc-footer"><span class="svc-stat" data-target="100">0</span><span class="svc-stat-lbl">% satisfaction</span></div>
+                </div>
+                <div class="svc-card reveal flip-up d3">
+                    <div class="svc-glow"></div>
+                    <div class="svc-big-num">03</div>
+                    <div class="svc-icon"><i class="fas fa-sync-alt"></i><div class="ring"></div></div>
+                    <div class="svc-tag t3">Reprise</div>
+                    <h3>Reprise au Magasin</h3>
+                    <p>Échangez votre ancien appareil contre une remise immédiate sur un nouveau produit.</p>
+                    <ul class="svc-list">
+                        <li><span class="li-dot"></span> Estimation gratuite &amp; rapide</li>
+                        <li><span class="li-dot"></span> Reprise téléphones &amp; PC</li>
+                        <li><span class="li-dot"></span> Remise immédiate en magasin</li>
+                        <li><span class="li-dot"></span> Processus simple &amp; transparent</li>
+                    </ul>
+                    <div class="svc-footer"><span class="svc-stat" data-target="24">0</span><span class="svc-stat-lbl">h délai moyen</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== WHY US ====== -->
+    <section class="why-us">
+        <!-- Enigma crosshair -->
+        <svg class="enigma-crosshair" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+            <circle cx="50" cy="50" r="30" stroke="var(--neon)" stroke-width="0.5" stroke-dasharray="4 6" opacity="0.1"><animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="20s" repeatCount="indefinite"/></circle>
+            <circle cx="50" cy="50" r="18" stroke="var(--violet)" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.08"><animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="15s" repeatCount="indefinite"/></circle>
+            <line x1="50" y1="15" x2="50" y2="35" stroke="var(--hot)" stroke-width="0.5" opacity="0.12"/>
+            <line x1="50" y1="65" x2="50" y2="85" stroke="var(--hot)" stroke-width="0.5" opacity="0.12"/>
+            <line x1="15" y1="50" x2="35" y2="50" stroke="var(--hot)" stroke-width="0.5" opacity="0.12"/>
+            <line x1="65" y1="50" x2="85" y2="50" stroke="var(--hot)" stroke-width="0.5" opacity="0.12"/>
+        </svg>
+        <div class="container">
+            <div class="sec-header center reveal">
+                <div class="sec-label">Pourquoi nous</div>
+                <h2 class="sec-title">La <span class="glow" data-text="confiance">confiance</span> avant tout</h2>
+                <p class="sec-sub">Ce qui nous distingue ? L'honnêteté, l'expertise et des prix justes.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card reveal rotate-in d1">
+                    <div class="why-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Fiabilité</h4>
+                    <p>Produits testés et garantis. Votre satisfaction est notre priorité.</p>
+                </div>
+                <div class="why-card reveal rotate-in d2">
+                    <div class="why-icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>Accueil</h4>
+                    <p>Service chaleureux et conseils personnalisés pour chaque client.</p>
+                </div>
+                <div class="why-card reveal rotate-in d3">
+                    <div class="why-icon"><i class="fas fa-tag"></i></div>
+                    <h4>Prix Justes</h4>
+                    <p>Des tarifs compétitifs et transparents, sans surprise.</p>
+                </div>
+                <div class="why-card reveal rotate-in d4">
+                    <div class="why-icon"><i class="fas fa-microchip"></i></div>
+                    <h4>Expertise</h4>
+                    <p>Techniciens qualifiés pour toutes vos réparations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== REVIEWS ====== -->
+    <section class="reviews" id="avis">
+        <div class="container">
+            <div class="sec-header reveal">
+                <div class="sec-label">Avis Clients</div>
+                <h2 class="sec-title">Ils nous font <span class="glow" data-text="confiance">confiance</span></h2>
+                <p class="sec-sub">Note parfaite de 5.0 / 5 sur Google avec 26 avis vérifiés.</p>
+            </div>
+
+            <div class="reviews-badge reveal blur-in">
+                <div class="reviews-score">5.0</div>
+                <div>
+                    <div class="reviews-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="reviews-count">Basé sur <strong>26 avis</strong> Google</div>
+                </div>
+                <a href="https://maps.app.goo.gl/PQgLt9Gh7u77i8QaA" target="_blank" class="btn-3d btn-google-review">
+                    <span class="btn-shimmer"></span>
+                    <i class="fab fa-google"></i> Voir tous les avis
+                </a>
+            </div>
+
+            <div class="reviews-grid">
+                <div class="rv-card reveal d1">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c1">M</div><div><div class="rv-name">MH AMINOS</div><div class="rv-date">Il y a 1 mois</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Bon service et bon courage bzm tech 😍🫶🏻</div>
+                </div>
+                <div class="rv-card reveal d2">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c2">F</div><div><div class="rv-name">Faissal BERDOUS</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Un service de photographie et d'électronique exceptionnel ! L'équipe est à l'écoute, professionnelle et attentive aux moindres détails. Je recommande vivement cette entreprise.</div>
+                </div>
+                <div class="rv-card reveal d3">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c3">N</div><div><div class="rv-name">Nouhaila Id</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Les produits conforme à la description. Les prix sont très attractifs. Le service client est à l'écoute.</div>
+                </div>
+                <div class="rv-card reveal d1">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c1">M</div><div><div class="rv-name">Majed Manhali</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Meilleur endroit pour acheter votre téléphone. Confiance et bon service.</div>
+                </div>
+                <div class="rv-card reveal d2">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c2">I</div><div><div class="rv-name">Isola Laurent</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Je vous recommande leur intervention, c'est des pros dans leur branche.</div>
+                </div>
+                <div class="rv-card reveal d3">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c3">M</div><div><div class="rv-name">Mustapha Sem</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Super services chez BZM 👍</div>
+                </div>
+                <div class="rv-card reveal d1">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c1">L</div><div><div class="rv-name">Larbi Aamri</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">C'est vraiment top 🔝</div>
+                </div>
+                <div class="rv-card reveal d2">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c2">B</div><div><div class="rv-name">Boujemaa Lemghifri</div><div class="rv-date">Il y a 1 an</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">Bon service ✅</div>
+                </div>
+                <div class="rv-card reveal d3">
+                    <div class="rv-top"><div class="rv-author"><div class="rv-avatar c3">A</div><div><div class="rv-name">Aichaaicha Chacha</div><div class="rv-date">Il y a 3 mois</div></div></div><div class="rv-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div></div>
+                    <div class="rv-text">الجودة ومعاملة 10/10 — Qualité et service 10/10</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section class="contact" id="contact">
+        <!-- Signal waves illustration -->
+        <svg class="tech-illust tech-signal" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+            <path d="M20 40 Q35 10 60 40 Q85 70 100 40" stroke="var(--neon)" stroke-width="0.8" fill="none" opacity="0.08" stroke-dasharray="4 3"><animate attributeName="stroke-dashoffset" from="0" to="-28" dur="2s" repeatCount="indefinite"/></path>
+            <path d="M10 40 Q30 0 60 40 Q90 80 110 40" stroke="var(--violet)" stroke-width="0.5" fill="none" opacity="0.05" stroke-dasharray="3 4"><animate attributeName="stroke-dashoffset" from="0" to="28" dur="3s" repeatCount="indefinite"/></path>
+            <circle cx="60" cy="40" r="4" fill="var(--neon)" opacity="0.1"><animate attributeName="r" values="3;6;3" dur="2s" repeatCount="indefinite"/></circle>
+        </svg>
+        <!-- WiFi icon illustration -->
+        <svg class="tech-illust tech-wifi" viewBox="0 0 60 50" fill="none" aria-hidden="true">
+            <path d="M5 18 Q30 -5 55 18" stroke="var(--neon)" stroke-width="0.8" fill="none" opacity="0.05" stroke-linecap="round"><animate attributeName="opacity" values="0.03;0.1;0.03" dur="2.5s" repeatCount="indefinite"/></path>
+            <path d="M13 26 Q30 8 47 26" stroke="var(--neon)" stroke-width="0.8" fill="none" opacity="0.06" stroke-linecap="round"><animate attributeName="opacity" values="0.03;0.12;0.03" dur="2.5s" repeatCount="indefinite" begin="0.4s"/></path>
+            <path d="M21 34 Q30 22 39 34" stroke="var(--neon)" stroke-width="0.8" fill="none" opacity="0.07" stroke-linecap="round"><animate attributeName="opacity" values="0.03;0.14;0.03" dur="2.5s" repeatCount="indefinite" begin="0.8s"/></path>
+            <circle cx="30" cy="42" r="3" fill="var(--neon)" opacity="0.1"><animate attributeName="opacity" values="0.05;0.2;0.05" dur="1.5s" repeatCount="indefinite"/></circle>
+        </svg>
+        <div class="container">
+            <div class="sec-header reveal">
+                <div class="sec-label">Contact</div>
+                <h2 class="sec-title">Nous <span class="glow" data-text="trouver">trouver</span></h2>
+                <p class="sec-sub">Passez nous voir en magasin ou contactez-nous directement.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card reveal slide-left">
+                    <h3>Coordonnées</h3>
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div><h4>Adresse</h4><p>Rue Principale Elkharij Massa, Massa 87452</p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div><h4>Téléphone</h4><p><a href="tel:0645172414">06 45 17 24 14</a> — <a href="tel:0612143069">06 12 14 30 69</a></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div><h4>WhatsApp</h4><p><a href="https://wa.me/212645172414" target="_blank">06 45 17 24 14</a> — <a href="https://wa.me/212612143069" target="_blank">06 12 14 30 69</a></p></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div><h4>Horaires</h4><p>Lun — Sam : 9h00 – 20h00<br>Dimanche : Sur rendez-vous</p></div>
+                    </div>
+                    <div class="socials">
+                        <a href="https://www.facebook.com/rachid.bzm" target="_blank" class="social-btn fb" data-tooltip="Rachid BZM"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/sbouzmane/" target="_blank" class="social-btn fb" data-tooltip="BZMTECH Page"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/reel/C7jSw1Ite3v/" target="_blank" class="social-btn ig" data-tooltip="@bzmtech"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/212645172414" target="_blank" class="social-btn wa-s" data-tooltip="+212 645 172 414"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="contact-map reveal slide-right">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1725!2d-9.6408459!3d29.9743094!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xdb3c989d31dfe61%3A0xa423ee7e2e7a9a9e!2sBZMTECH!5e0!3m2!1sfr!2sma" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="BZMTECH Massa"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== CTA ====== -->
+    <section class="cta-section">
+        <!-- Enigma DNA helix -->
+        <svg class="enigma-dna" viewBox="0 0 60 300" fill="none" aria-hidden="true">
+            <path d="M10 0 Q30 30 50 60 Q30 90 10 120 Q30 150 50 180 Q30 210 10 240 Q30 270 50 300" stroke="var(--neon)" stroke-width="0.8" fill="none" opacity="0.1" stroke-dasharray="8 4"><animate attributeName="stroke-dashoffset" from="0" to="-48" dur="4s" repeatCount="indefinite"/></path>
+            <path d="M50 0 Q30 30 10 60 Q30 90 50 120 Q30 150 10 180 Q30 210 50 240 Q30 270 10 300" stroke="var(--violet)" stroke-width="0.8" fill="none" opacity="0.08" stroke-dasharray="8 4"><animate attributeName="stroke-dashoffset" from="0" to="48" dur="4s" repeatCount="indefinite"/></path>
+        </svg>
+        <div class="container">
+            <div class="cta-box reveal zoom-in">
+                <h2>Un besoin tech ? On s'en occupe.</h2>
+                <p>Contactez-nous maintenant. Estimation gratuite pour toute réparation ou reprise.</p>
+                <div class="cta-actions">
+                    <a href="https://wa.me/212645172414?text=Bonjour%20BZMTECH%2C%20je%20souhaite%20un%20devis." class="btn-3d btn-wa" target="_blank"><span class="btn-shimmer"></span><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:0645172414" class="btn-3d btn-violet"><span class="btn-shimmer"></span><i class="fas fa-phone"></i> Appeler</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== FOOTER ====== -->
+    <footer class="footer">
+        <div class="container footer-inner reveal blur-in">
+            <div class="footer-logo">
+                <img src="media/BZMTECH LOGO.png" alt="BZMTECH" class="footer-logo-img">
+                <span class="footer-logo-text">BZM<span>TECH</span></span>
+            </div>
+            <p>© 2026 BZMTECH — Massa. Tous droits réservés.</p>
+            <div class="footer-socials">
+                <a href="https://www.facebook.com/rachid.bzm" target="_blank" class="social-btn fb" data-tooltip="Rachid BZM"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.facebook.com/sbouzmane/" target="_blank" class="social-btn fb" data-tooltip="BZMTECH Page"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/reel/C7jSw1Ite3v/" target="_blank" class="social-btn ig" data-tooltip="@bzmtech"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/212645172414" target="_blank" class="social-btn wa-s" data-tooltip="+212 645 172 414"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== FLOATING WHATSAPP ====== -->
+    <a href="https://wa.me/212645172414?text=Bonjour%20BZMTECH%2C%20je%20souhaite%20des%20informations." class="wa-float" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+    <!-- ====== LIGHTBOX ====== -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-close"><i class="fas fa-times"></i></div>
+        <img src="" alt="BZMTECH" id="lightboxImg">
+    </div>
+
+    <!-- ====== SCRIPTS ====== -->
+    <script>
+    (function(){
+        'use strict';
+
+        // === NAVBAR scroll hide banner ===
+        const navbar=document.getElementById('navbar');
+        const banner=document.getElementById('provBanner');
+        let bannerH=banner.offsetHeight;
+        banner.style.transition='margin-top 0.35s ease';
+
+        function onScroll(){
+            const y=window.scrollY;
+            navbar.classList.toggle('scrolled',y>20);
+            if(y>bannerH+40){
+                banner.style.marginTop=-bannerH+'px';
+                navbar.classList.remove('has-banner');
+            }else{
+                banner.style.marginTop='0';
+                navbar.classList.add('has-banner');
+            }
+            // Sync desktop menu position with navbar
+            syncMenuPos();
+        }
+        // Keep nav-menu aligned with navbar on desktop
+        const menu=document.getElementById('navMenu');
+        function syncMenuPos(){
+            if(window.innerWidth>=1024){
+                menu.style.top=navbar.offsetTop+'px';
+                menu.style.height=navbar.offsetHeight+'px';
+            }else{
+                menu.style.top='';
+                menu.style.height='';
+            }
+        }
+        syncMenuPos();
+        window.addEventListener('resize',syncMenuPos);
+        window.addEventListener('scroll',onScroll,{passive:true});
+
+        // === MOBILE MENU ===
+        const toggle=document.getElementById('navToggle');
+        const closeBtn=document.getElementById('navClose');
+        const overlay=document.getElementById('navOverlay');
+
+        function openMenu(){
+            menu.classList.add('open');
+            overlay.classList.add('open');
+            toggle.classList.add('active');
+            document.body.style.overflow='hidden';
+        }
+        function closeMenu(){
+            menu.classList.remove('open');
+            overlay.classList.remove('open');
+            toggle.classList.remove('active');
+            document.body.style.overflow='';
+        }
+
+        toggle.addEventListener('click',()=>{
+            menu.classList.contains('open') ? closeMenu() : openMenu();
+        });
+        closeBtn.addEventListener('click',closeMenu);
+        overlay.addEventListener('click',closeMenu);
+        document.addEventListener('keydown',(e)=>{
+            if(e.key==='Escape' && menu.classList.contains('open')) closeMenu();
+        });
+        menu.querySelectorAll('.nav-menu-links a').forEach(a=>a.addEventListener('click',closeMenu));
+
+        // === SCROLL PROGRESS BAR ===
+        const scrollBar=document.getElementById('scrollProgress');
+        function updateScrollProgress(){
+            const h=document.documentElement.scrollHeight-window.innerHeight;
+            const pct=h>0?(window.scrollY/h)*100:0;
+            scrollBar.style.width=pct+'%';
+        }
+        window.addEventListener('scroll',updateScrollProgress,{passive:true});
+
+        // === SCROLL REVEAL (Enhanced) ===
+        const reveals=document.querySelectorAll('.reveal');
+        const rObs=new IntersectionObserver(es=>{
+            es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');rObs.unobserve(e.target)}});
+        },{threshold:0.06,rootMargin:'0px 0px -40px 0px'});
+        reveals.forEach(el=>rObs.observe(el));
+
+        // === HERO STAGGER — sequential fade-in ===
+        const heroEls=document.querySelectorAll('.hero-stagger');
+        heroEls.forEach((el,i)=>{
+            el.style.transitionDelay=(0.15+i*0.15)+'s';
+        });
+        // Trigger after a tiny delay so page paint is done
+        requestAnimationFrame(()=>{
+            setTimeout(()=>{heroEls.forEach(el=>el.classList.add('visible'))},100);
+        });
+
+        // === ACTIVE NAV SECTION TRACKING ===
+        const navLinks=document.querySelectorAll('.nav-menu-links a[href^="#"]');
+        const sections=[];
+        navLinks.forEach(a=>{
+            const t=document.querySelector(a.getAttribute('href'));
+            if(t)sections.push({el:t,link:a});
+        });
+        function updateActiveNav(){
+            const y=window.scrollY+200;
+            let current=null;
+            sections.forEach(s=>{
+                if(s.el.offsetTop<=y)current=s;
+            });
+            navLinks.forEach(a=>a.classList.remove('active'));
+            if(current)current.link.classList.add('active');
+        }
+        window.addEventListener('scroll',updateActiveNav,{passive:true});
+
+        // === PARALLAX SECTION HEADERS ===
+        if(window.innerWidth>=768){
+            const secHeaders=document.querySelectorAll('.sec-title');
+            secHeaders.forEach(h=>h.classList.add('parallax-title'));
+            window.addEventListener('scroll',()=>{
+                const scrollY=window.scrollY;
+                secHeaders.forEach(h=>{
+                    const rect=h.getBoundingClientRect();
+                    if(rect.top<window.innerHeight&&rect.bottom>0){
+                        const offset=(rect.top-window.innerHeight/2)*0.06;
+                        h.style.transform='translateY('+offset+'px)';
+                    }
+                });
+            },{passive:true});
+        }
+
+        // === HERO COUNTER ANIMATION ===
+        function animateCounters(selector){
+            document.querySelectorAll(selector).forEach(el=>{
+                const target=parseFloat(el.dataset.target);
+                const isFloat=target%1!==0;
+                const unitEl=el.querySelector('.unit');
+                const unitText=unitEl?unitEl.textContent:'';
+                const frames=50;let i=0;const step=target/frames;
+                const timer=setInterval(()=>{
+                    i++;const val=Math.min(step*i,target);
+                    const d=isFloat?val.toFixed(1):Math.floor(val);
+                    el.textContent=d;
+                    if(unitText){const u=document.createElement('span');u.className='unit';u.textContent=unitText;el.appendChild(u)}
+                    if(i>=frames)clearInterval(timer);
+                },30);
+            });
+        }
+        // Hero metrics
+        const heroMetrics=document.querySelector('.hero-metrics');
+        if(heroMetrics){
+            const cObs=new IntersectionObserver(es=>{
+                if(es[0].isIntersecting){animateCounters('.metric-val[data-target]');cObs.disconnect()}
+            },{threshold:0.5});
+            cObs.observe(heroMetrics);
+        }
+
+        // Service stat counters
+        const svcStats=document.querySelectorAll('.svc-stat[data-target]');
+        if(svcStats.length){
+            const sObs=new IntersectionObserver(es=>{
+                es.forEach(en=>{
+                    if(en.isIntersecting){
+                        const el=en.target;const t=parseInt(el.dataset.target);
+                        let c=0;const s=Math.ceil(t/40);
+                        const ti=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(ti)}el.textContent=c},30);
+                        sObs.unobserve(el);
+                    }
+                });
+            },{threshold:0.5});
+            svcStats.forEach(el=>sObs.observe(el));
+        }
+
+        // === SMOOTH SCROLL with navbar offset ===
+        const navH=()=>document.querySelector('.navbar').offsetHeight+10;
+        document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+            a.addEventListener('click',function(e){
+                const id=this.getAttribute('href');
+                const t=document.querySelector(id);
+                if(t){
+                    e.preventDefault();
+                    const y=t.getBoundingClientRect().top+window.scrollY-navH();
+                    window.scrollTo({top:y,behavior:'smooth'});
+                }
+            });
+        });
+
+        // === SECTION SCROLL TRANSITION ===
+        // Insert neon line divs into each section
+        const allSections=document.querySelectorAll('section[id]');
+        allSections.forEach(sec=>{
+            const line=document.createElement('div');
+            line.className='section-line';
+            sec.prepend(line);
+        });
+        // Observe sections for enter/leave
+        const secObs=new IntersectionObserver(entries=>{
+            entries.forEach(entry=>{
+                if(entry.isIntersecting){
+                    entry.target.classList.add('section-active');
+                }else{
+                    entry.target.classList.remove('section-active');
+                }
+            });
+        },{threshold:0.12,rootMargin:'-80px 0px -15% 0px'});
+        allSections.forEach(s=>secObs.observe(s));
+
+        // === LIGHTBOX ===
+        window.openLightbox=function(el){
+            const img=el.querySelector('img');const lb=document.getElementById('lightbox');
+            document.getElementById('lightboxImg').src=img.src;
+            lb.classList.add('active');document.body.style.overflow='hidden';
+        };
+        window.closeLightbox=function(){
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow='';
+        };
+        document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLightbox()});
+
+        // === HERO CARD PARALLAX (desktop) ===
+        const heroCard=document.getElementById('heroCard');
+        if(heroCard&&window.innerWidth>=1024){
+            document.querySelector('.hero').addEventListener('mousemove',e=>{
+                const r=heroCard.getBoundingClientRect();
+                const x=(e.clientX-r.left-r.width/2)/20;
+                const y=(e.clientY-r.top-r.height/2)/20;
+                heroCard.style.transform='perspective(800px) rotateY('+x+'deg) rotateX('+(-y)+'deg)';
+            });
+            document.querySelector('.hero').addEventListener('mouseleave',()=>{
+                heroCard.style.transform='';heroCard.style.transition='transform 0.6s ease';
+                setTimeout(()=>{heroCard.style.transition=''},600);
+            });
+        }
+
+        // === BRAND WORD HOVER — Random neon glow ===
+        document.querySelectorAll('.brand-word').forEach(w=>{
+            const cols=['#00e5ff','#a855f7','#ff3d8f','#ff9f1c','#25d366','#ffd600'];
+            w.addEventListener('mouseenter',()=>{
+                const c=cols[Math.floor(Math.random()*cols.length)];
+                w.style.color=c;w.style.textShadow='0 0 20px '+c+',0 0 50px '+c+'50';
+            });
+            w.addEventListener('mouseleave',()=>{w.style.color='';w.style.textShadow=''});
+        });
+
+        // === 3D BUTTON TILT ===
+        document.querySelectorAll('.btn-3d').forEach(btn=>{
+            btn.addEventListener('mousemove',e=>{
+                const r=btn.getBoundingClientRect();
+                const x=((e.clientX-r.left)/r.width-0.5)*12;
+                const y=((e.clientY-r.top)/r.height-0.5)*-12;
+                btn.style.transform='translateY(-4px) perspective(600px) rotateX('+y+'deg) rotateY('+x+'deg) scale(1.03)';
+            });
+            btn.addEventListener('mouseleave',()=>{
+                btn.style.transform='';btn.style.transition='transform 0.5s var(--spring)';
+                setTimeout(()=>{btn.style.transition=''},500);
+            });
+        });
+
+        // === BINARY RAIN (Matrix effect) ===
+        (function(){
+            const rain=document.getElementById('binaryRain');
+            if(!rain||window.innerWidth<768)return;
+            const chars='01';
+            const cols=Math.floor(window.innerWidth/28);
+            for(let i=0;i<cols;i++){
+                const col=document.createElement('div');
+                col.className='br-col';
+                col.style.left=(i*28)+'px';
+                col.style.animationDelay=(Math.random()*8)+'s';
+                col.style.animationDuration=(6+Math.random()*8)+'s';
+                let txt='';
+                for(let j=0;j<20;j++)txt+=chars[Math.floor(Math.random()*2)]+'\\n';
+                col.textContent=txt;
+                rain.appendChild(col);
+            }
+        })();
+
+        // === TECH ILLUSTRATION FLOATING ===
+        document.querySelectorAll('.tech-illust').forEach((el,i)=>{
+            el.style.animation='techFloat '+(4+i*0.7)+'s ease-in-out infinite '+(i*0.5)+'s';
+        });
+
+        // === MAGNETIC TILT on svc-cards ===
+        document.querySelectorAll('.svc-card').forEach(card=>{
+            card.addEventListener('mousemove',e=>{
+                const r=card.getBoundingClientRect();
+                const x=((e.clientX-r.left)/r.width-0.5)*8;
+                const y=((e.clientY-r.top)/r.height-0.5)*-8;
+                card.style.transform='perspective(800px) rotateX('+y+'deg) rotateY('+x+'deg) translateY(-6px)';
+            });
+            card.addEventListener('mouseleave',()=>{
+                card.style.transform='';card.style.transition='transform 0.6s cubic-bezier(0.34,1.56,0.64,1)';
+                setTimeout(()=>{card.style.transition=''},600);
+            });
+        });
+
+        // === PARALLAX depth on scroll for tech illustrations ===
+        if(window.innerWidth>=768){
+            const techs=document.querySelectorAll('.tech-illust');
+            window.addEventListener('scroll',()=>{
+                const y=window.scrollY;
+                techs.forEach((el,i)=>{
+                    const speed=(i%2===0)?0.03:-0.02;
+                    el.style.transform='translateY('+(y*speed)+'px)';
+                });
+            },{passive:true});
+        }
+
+    })();
+    </script>
+</body>
+</html>
