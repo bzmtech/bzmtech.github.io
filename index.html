@@ -1480,6 +1480,7 @@ body::after{
     
 
     document.querySelectorAll('.stat-number').forEach(el => {
+        if (el.id === 'total-visitors') return; // Handled by live-counter.js
       const target = parseFloat(el.dataset.target);
       const suffix = el.dataset.suffix || '+';
       const isDecimal = el.dataset.decimal === 'true';
@@ -1610,6 +1611,8 @@ body::after{
 <script src="live-counter.js?v=2"></script>
 </body>
 </html>
+
+
 
 
 
