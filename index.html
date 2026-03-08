@@ -681,7 +681,7 @@ body::after{
 <!-- ════════════ STATS BAR ════════════ -->
 <div class="stats-bar" id="stats-bar">
   <div class="stat-item">
-    <div class="stat-number" id="total-visitors" data-target="12450" data-suffix="+">0</div>
+    <div class="stat-number" id="total-visitors" data-target="0" data-suffix="+">0</div>
     <div class="stat-label">Visiteurs Total</div>
   </div>
   <div class="stat-item">
@@ -1409,7 +1409,7 @@ body::after{
     // Update the true total visits if fetched successfully
     const tvEl = document.getElementById('total-visitors');
     // On ajoute +12450 au compteur réel de base pour garder l'aspect autoritaire tout en comptant les vrais clics
-    if(tvEl && trueTotalVisits) { tvEl.dataset.target = 12450 + trueTotalVisits; }
+    if(tvEl && trueTotalVisits) { tvEl.dataset.target = trueTotalVisits; }
 
     document.querySelectorAll('.stat-number').forEach(el => {
       const target = parseFloat(el.dataset.target);
@@ -1541,3 +1541,5 @@ body::after{
 </script>
 </body>
 </html>
+
+
