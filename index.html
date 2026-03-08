@@ -1255,7 +1255,7 @@ body::after{
           <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/>
         </svg>
       </a>
-      <a href="https://www.facebook.com/sbouzmane" target="_blank" aria-label="Facebook">
+      <a href="https://www.facebook.com/sbouzmane/" target="_blank" aria-label="Facebook">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
         </svg>
@@ -1293,14 +1293,7 @@ body::after{
   const preloaderLetters = document.querySelectorAll('#preloader-logo span');
   const preloaderFill = document.getElementById('preloader-fill');
 
-  // Fetch real total visits asynchronously
-  let trueTotalVisits = null;
-  fetch('https://api.counterapi.dev/v1/bzmtech_landing/page_visits/up')
-    .then(r => r.json())
-    .then(data => { if(data && data.count) trueTotalVisits = data.count; })
-    .catch(e => console.log('Notice: Stats API offline, using local fallback.'));
-
-  const plTl = gsap.timeline();
+    const plTl = gsap.timeline();
   preloaderLetters.forEach((l, i) => {
     plTl.to(l, { opacity: 1, y: 0, duration: 0.15, color: '#FF6B00', textShadow: '0 0 30px rgba(255,107,0,.8)', ease: 'power2.out' }, i * 0.1);
     plTl.to(l, { color: '#ffffff', textShadow: '0 0 0px transparent', duration: 0.3, ease: 'power2.inOut' }, i * 0.1 + 0.15);
@@ -1621,6 +1614,7 @@ body::after{
 <script src="live-counter.js"></script>
 </body>
 </html>
+
 
 
 

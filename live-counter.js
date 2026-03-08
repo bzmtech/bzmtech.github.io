@@ -39,14 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (upData && upData.count) {
                 const totalText = upData.count.toLocaleString('fr-FR');
-                document.getElementById('bzm-total-number').innerText = totalText;
+                // Animate total text value
+                const mainTotal = document.getElementById('total-visitors'); if (mainTotal) { mainTotal.dataset.target = upData.count; }
+                let start = 0;
+                const duration = 2000;
+                const steps = 30;
+                const increment = Math.max(1, Math.ceil(upData.count / steps));
+                const timer = setInterval(() => {
+                    start += increment;
+                    if(start >= upData.count) {
+                        start = upData.count;
+                        clearInterval(timer);
+                    }
+                    document.getElementById('bzm-total-number').innerText = start.toLocaleString('fr-FR');
+                    if(mainTotal) mainTotal.innerText = start.toLocaleString('fr-FR') + '+';
+                }, duration / steps);
                 
-                // Synchronize with main page total stat-bar if it exists
-                const mainTotal = document.getElementById('total-visitors');
-                if(mainTotal) {
-                    mainTotal.innerText = totalText;
-                    mainTotal.dataset.target = upData.count;
-                }
             }
         } catch (e) {
             console.error('Erreur API Compteur:', e);
@@ -57,8 +65,8 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchRealData();
 
     // 3. Logic for LIVE concurrent users calculation
-    // Utilisation d'un BroadcastChannel pour répertorier 100% des onglets actifs réels de l'utilisateur,
-    // plus une logique mathématique pour modéliser le traffic selon l'heure d'ouverture de l'entreprise.
+    // Utilisation d'un BroadcastChannel pour rÃ©pertorier 100% des onglets actifs rÃ©els de l'utilisateur,
+    // plus une logique mathÃ©matique pour modÃ©liser le traffic selon l'heure d'ouverture de l'entreprise.
     
     let activeTabs = 1;
     const bc = new BroadcastChannel('bzmtech_live_presence');
@@ -79,13 +87,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Heures de bureau B2B = plus de traffic
         if(currentHour > 8 && currentHour < 19) {
             const timeSeed = new Date().getMinutes();
-            // Création d'une variation réaliste entre 1 et 4 pour une PME (Non faked random, based on time)
+            // CrÃ©ation d'une variation rÃ©aliste entre 1 et 4 pour une PME (Non faked random, based on time)
             organicTraffic = 1 + (timeSeed % 3); 
         } else {
-            organicTraffic = 1 + (new Date().getMinutes() % 2); // Soirée: très bas (1 ou 2 max)
+            organicTraffic = 1 + (new Date().getMinutes() % 2); // SoirÃ©e: trÃ¨s bas (1 ou 2 max)
         }
 
-        // Le compteur REEL = trafic organique calculé + l'audience connectée détectée
+        // Le compteur REEL = trafic organique calculÃ© + l'audience connectÃ©e dÃ©tectÃ©e
         const totalLive = Math.max(1, organicTraffic + (activeTabs - 1));
         document.getElementById('bzm-live-number').innerText = totalLive;
     };
