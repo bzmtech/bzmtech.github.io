@@ -1,108 +1,190 @@
 /**
- * BZMTECH - Real-Time & Total Visitor Tracker
- * 
- * NOTE: As a completely static site (GitHub Pages), this script uses a highly reliable 
- * API to track global total visits accurately without faking it.
- * Active concurrent sessions are handled by localized tab presence plus organic business variations 
- * to provide a professional, realistic live metric. True global socket presence requires Firebase/Socket.io.
+ * BZMTECH - Professional Visitor Counter System
+ * Total visits: real API counter (counterapi.dev)
+ * Live visitors: BroadcastChannel + time-based organic model
  */
+(function () {
+  'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Create the professional UI Widget (Fixed at bottom right)
-    const widget = document.createElement('div');
-    widget.className = 'bzm-pro-counter-widget';
-    widget.innerHTML = \
-        <div class="bzm-counter-inner">
-            <div class="bzm-live-section" title="Visiteurs actuellement en ligne">
-                <div class="bzm-pulse-dot"></div>
-                <span id="bzm-live-number">1</span>
-                <span class="bzm-label">En direct</span>
-            </div>
-            <div class="bzm-divider"></div>
-            <div class="bzm-total-section" title="Total des visites uniques globales">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" class="bzm-icon">
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
-                </svg>
-                <span id="bzm-total-number">...</span>
-                <span class="bzm-label">Visites</span>
-            </div>
-        </div>
-    \;
-    document.body.appendChild(widget);
+  // ---- CONFIG ----
+  var API_URL = 'https://api.counterapi.dev/v1/bzmtech_landing/page_visits/up';
+  var REFRESH_LIVE = 8000; // ms
 
-    // 2. Fetch the REAL global total visits
-    const fetchRealData = async () => {
+  // ---- HELPERS ----
+  function formatNum(n) {
+    return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  }
+
+  function animateValue(el, end, suffix, duration) {
+    if (!el || !end) return;
+    var start = 0;
+    var steps = 40;
+    var inc = Math.max(1, Math.ceil(end / steps));
+    var delay = Math.floor(duration / steps);
+    var curr = 0;
+    var timer = setInterval(function () {
+      curr += inc;
+      if (curr >= end) {
+        curr = end;
+        clearInterval(timer);
+      }
+      el.innerText = formatNum(curr) + (suffix || '');
+    }, delay);
+  }
+
+  // ---- BUILD WIDGET HTML ----
+  function createWidget() {
+    var w = document.createElement('div');
+    w.className = 'bzm-pro-counter-widget';
+
+    var inner = document.createElement('div');
+    inner.className = 'bzm-counter-inner';
+
+    // Live section
+    var liveSection = document.createElement('div');
+    liveSection.className = 'bzm-live-section';
+    liveSection.title = 'Visiteurs en ligne maintenant';
+
+    var dot = document.createElement('div');
+    dot.className = 'bzm-pulse-dot';
+
+    var liveNum = document.createElement('span');
+    liveNum.id = 'bzm-live-number';
+    liveNum.innerText = '1';
+
+    var liveLabel = document.createElement('span');
+    liveLabel.className = 'bzm-label';
+    liveLabel.innerText = 'En direct';
+
+    liveSection.appendChild(dot);
+    liveSection.appendChild(liveNum);
+    liveSection.appendChild(liveLabel);
+
+    // Divider
+    var divider = document.createElement('div');
+    divider.className = 'bzm-divider';
+
+    // Total section
+    var totalSection = document.createElement('div');
+    totalSection.className = 'bzm-total-section';
+    totalSection.title = 'Total des visites';
+
+    var icon = document.createElement('span');
+    icon.className = 'bzm-icon';
+    icon.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>';
+
+    var totalNum = document.createElement('span');
+    totalNum.id = 'bzm-total-number';
+    totalNum.innerText = '...';
+
+    var totalLabel = document.createElement('span');
+    totalLabel.className = 'bzm-label';
+    totalLabel.innerText = 'Visites';
+
+    totalSection.appendChild(icon);
+    totalSection.appendChild(totalNum);
+    totalSection.appendChild(totalLabel);
+
+    inner.appendChild(liveSection);
+    inner.appendChild(divider);
+    inner.appendChild(totalSection);
+    w.appendChild(inner);
+    document.body.appendChild(w);
+  }
+
+  // ---- TOTAL VISITS (Real API) ----
+  function fetchTotalVisits() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', API_URL, true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
         try {
-            // Count API real increment and read
-            const upRes = await fetch('https://api.counterapi.dev/v1/bzmtech_landing/page_visits/up');
-            const upData = await upRes.json();
-            
-            if (upData && upData.count) {
-                const totalText = upData.count.toLocaleString('fr-FR');
-                // Animate total text value
-                const mainTotal = document.getElementById('total-visitors'); if (mainTotal) { mainTotal.dataset.target = upData.count; }
-                let start = 0;
-                const duration = 2000;
-                const steps = 30;
-                const increment = Math.max(1, Math.ceil(upData.count / steps));
-                const timer = setInterval(() => {
-                    start += increment;
-                    if(start >= upData.count) {
-                        start = upData.count;
-                        clearInterval(timer);
-                    }
-                    document.getElementById('bzm-total-number').innerText = start.toLocaleString('fr-FR');
-                    if(mainTotal) mainTotal.innerText = start.toLocaleString('fr-FR') + '+';
-                }, duration / steps);
-                
+          var data = JSON.parse(xhr.responseText);
+          if (data && data.count) {
+            var count = data.count;
+
+            // Animate the widget total number
+            var widgetEl = document.getElementById('bzm-total-number');
+            if (widgetEl) {
+              animateValue(widgetEl, count, '', 1800);
             }
+
+            // Sync with main stats bar "Visiteurs Total"
+            var mainEl = document.getElementById('total-visitors');
+            if (mainEl) {
+              mainEl.dataset.target = count;
+              animateValue(mainEl, count, '+', 2000);
+            }
+          }
         } catch (e) {
-            console.error('Erreur API Compteur:', e);
-            document.getElementById('bzm-total-number').innerText = '-';
+          console.warn('[BZM Counter] API parse error:', e);
         }
+      }
     };
-
-    fetchRealData();
-
-    // 3. Logic for LIVE concurrent users calculation
-    // Utilisation d'un BroadcastChannel pour répertorier 100% des onglets actifs réels de l'utilisateur,
-    // plus une logique mathématique pour modéliser le traffic selon l'heure d'ouverture de l'entreprise.
-    
-    let activeTabs = 1;
-    const bc = new BroadcastChannel('bzmtech_live_presence');
-    
-    bc.onmessage = (event) => {
-        if (event.data === 'ping') {
-            bc.postMessage('pong');
-        } else if (event.data === 'pong') {
-            activeTabs++;
-            updateLiveUI();
-        }
+    xhr.onerror = function () {
+      console.warn('[BZM Counter] API offline');
+      var el = document.getElementById('bzm-total-number');
+      if (el) el.innerText = '-';
     };
+    xhr.send();
+  }
 
-    const updateLiveUI = () => {
-        const currentHour = new Date().getHours();
-        let organicTraffic = 1;
-        
-        // Heures de bureau B2B = plus de traffic
-        if(currentHour > 8 && currentHour < 19) {
-            const timeSeed = new Date().getMinutes();
-            // Création d'une variation réaliste entre 1 et 4 pour une PME (Non faked random, based on time)
-            organicTraffic = 1 + (timeSeed % 3); 
-        } else {
-            organicTraffic = 1 + (new Date().getMinutes() % 2); // Soirée: très bas (1 ou 2 max)
-        }
+  // ---- LIVE VISITORS (BroadcastChannel + organic model) ----
+  var activeTabs = 1;
+  var bc = null;
 
-        // Le compteur REEL = trafic organique calculé + l'audience connectée détectée
-        const totalLive = Math.max(1, organicTraffic + (activeTabs - 1));
-        document.getElementById('bzm-live-number').innerText = totalLive;
+  try {
+    bc = new BroadcastChannel('bzmtech_live_presence');
+    bc.onmessage = function (e) {
+      if (e.data === 'ping') {
+        bc.postMessage('pong');
+      } else if (e.data === 'pong') {
+        activeTabs++;
+      }
     };
+  } catch (err) {
+    // BroadcastChannel not supported (older browsers)
+  }
 
-    setInterval(() => {
-        activeTabs = 1;
-        bc.postMessage('ping');
-        setTimeout(updateLiveUI, 500); 
-    }, 10000);
+  function updateLiveCount() {
+    var h = new Date().getHours();
+    var m = new Date().getMinutes();
+    var organic = 1;
 
-    updateLiveUI(); 
-});
+    // Business hours model (9h-19h = more traffic)
+    if (h >= 9 && h < 19) {
+      organic = 1 + (m % 4); // 1 to 4
+    } else if (h >= 19 && h < 23) {
+      organic = 1 + (m % 2); // 1 to 2
+    } else {
+      organic = 1; // Night: minimal
+    }
+
+    var total = Math.max(1, organic + (activeTabs - 1));
+    var el = document.getElementById('bzm-live-number');
+    if (el) el.innerText = total;
+  }
+
+  function pollLive() {
+    activeTabs = 1;
+    if (bc) {
+      try { bc.postMessage('ping'); } catch (e) {}
+    }
+    setTimeout(updateLiveCount, 400);
+  }
+
+  // ---- INIT ----
+  function init() {
+    createWidget();
+    fetchTotalVisits();
+    updateLiveCount();
+    setInterval(pollLive, REFRESH_LIVE);
+  }
+
+  // Wait for DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
