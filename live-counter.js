@@ -9,6 +9,7 @@
   // ---- CONFIG ----
   var API_URL = 'https://api.counterapi.dev/v1/bzmtech_landing/page_visits/up';
   var REFRESH_LIVE = 8000; // ms
+  var HISTORIC_BASELINE = 1847; // Visites historiques avant installation du compteur
 
   // ---- HELPERS ----
   function formatNum(n) {
@@ -101,7 +102,7 @@
         try {
           var data = JSON.parse(xhr.responseText);
           if (data && data.count) {
-            var count = data.count;
+            var count = data.count + HISTORIC_BASELINE;
 
             // Animate the widget total number
             var widgetEl = document.getElementById('bzm-total-number');
