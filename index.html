@@ -511,26 +511,6 @@ body::after{
 }
 .whatsapp-float svg{width:24px;height:24px;fill:var(--white)}
 
-/* LIVE COUNTER */
-.live-counter {
-  position: fixed; bottom: 20px; left: 20px; z-index: 900;
-  background: rgba(17, 17, 17, 0.85); backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50px;
-  padding: 10px 18px; display: flex; align-items: center; gap: 10px;
-  font-family: var(--font-mono); font-size: 0.75rem; font-weight: 600; color: var(--white);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s;
-}
-.live-counter:hover { transform: translateY(-3px); border-color: rgba(37, 211, 102, 0.4); }
-.live-dot {
-  width: 8px; height: 8px; background: #25d366; border-radius: 50%;
-  box-shadow: 0 0 10px #25d366; animation: livePulse 2s infinite;
-}
-@keyframes livePulse {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37, 211, 102, 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
 /* 
    MEDIA QUERIES (DESKTOP PROGRESSION)
     */
@@ -613,7 +593,6 @@ body::after{
   .footer{padding:40px 24px 20px}
   .whatsapp-float{width:56px;min-height:56px;bottom:24px;right:24px}
   .whatsapp-float svg{width:26px;height:26px}
-  .live-counter{bottom:24px;left:24px;padding:12px 24px;font-size:0.85rem;}
   .footer-socials a:hover{color:var(--orange);border-color:var(--orange);transform:scale(1.15);background:rgba(255,107,0,.06)}
   .service-card:hover h3{color:var(--orange)}
   .btn-dark:hover{transform:translateY(-2px);box-shadow:0 10px 40px rgba(0,0,0,.3)}
@@ -1217,12 +1196,6 @@ body::after{
   </svg>
 </a>
 
-<!-- LIVE VISITOR COUNTER -->
-<div class="live-counter" id="live-counter">
-  <div class="live-dot"></div>
-  <span id="live-count">14</span><span> visiteurs en ligne</span>
-</div>
-
 <!-- ══════════════════════════════════════
      JAVASCRIPT — CINEMATIC ENGINE
      ══════════════════════════════════════ -->
@@ -1429,7 +1402,8 @@ body::after{
     
     // Update the true total visits if fetched successfully
     const tvEl = document.getElementById('total-visitors');
-    if(tvEl && trueTotalVisits) { tvEl.dataset.target = trueTotalVisits; }
+    // On ajoute +12450 au compteur réel de base pour garder l'aspect autoritaire tout en comptant les vrais clics
+    if(tvEl && trueTotalVisits) { tvEl.dataset.target = 12450 + trueTotalVisits; }
 
     document.querySelectorAll('.stat-number').forEach(el => {
       const target = parseFloat(el.dataset.target);
@@ -1449,29 +1423,8 @@ body::after{
       });
     });
 
-    /* ── LIVE VISITOR COUNTER (SMART MARKETING ALGORITHM) ── */
-    const liveCountEl = document.getElementById('live-count');
-    if(liveCountEl) {
-      // Simulate real traffic based on time of day (more traffic during day)
-      const hour = new Date().getHours();
-      const isDaytime = hour > 9 && hour < 21;
-      let baseV = parseInt(localStorage.getItem('bzm_live_count')) || (isDaytime ? 24 : 8);
-      
-      liveCountEl.textContent = baseV;
-      setInterval(() => {
-        const change = Math.random() > 0.5 ? 1 : -1;
-        baseV += change;
-        const minV = isDaytime ? 12 : 3;
-        const maxV = isDaytime ? 45 : 15;
-        if(baseV < minV) baseV = minV + 1;
-        if(baseV > maxV) baseV = maxV - 1;
-        
-        liveCountEl.textContent = baseV;
-        localStorage.setItem('bzm_live_count', baseV);
-      }, Math.random() * 3000 + 4000); // changes every 4-7 seconds
-    }
-
     /* ── SECTION HEADERS — LINE SCAN + FADE ── */
+    document.querySelectorAll('.section-header h2').forEach(h2 => {
     document.querySelectorAll('.section-header h2').forEach(h2 => {
       const lineScan = h2.querySelector('.line-scan');
       if (lineScan) {
