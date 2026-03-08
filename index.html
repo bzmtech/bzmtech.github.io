@@ -766,15 +766,15 @@ body::after{
     <div class="stat-label">Visiteurs Total</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number" data-target="800" data-suffix="+">0</div>
+    <div class="stat-number" data-target="1200" data-suffix="+">0</div>
     <div class="stat-label">Clients Satisfaits</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number" data-target="24" data-suffix="h">0</div>
+    <div class="stat-number" data-target="2" data-suffix="h">0</div>
     <div class="stat-label">Délai Réparation</div>
   </div>
   <div class="stat-item">
-    <div class="stat-number" data-target="5.0" data-suffix="/5" data-decimal="true">0</div>
+    <div class="stat-number" data-target="4.9" data-suffix="/5" data-decimal="true">0</div>
     <div class="stat-label">Note Google</div>
   </div>
 </div>
@@ -1478,10 +1478,6 @@ body::after{
       gsap.to(item, { opacity: 1, y: 0, duration: 0.8, delay: i * 0.12, scrollTrigger: { trigger: '.stats-bar', start: 'top 80%' } });
     });
     
-    // Update the true total visits if fetched successfully
-    const tvEl = document.getElementById('total-visitors');
-    // On ajoute +12450 au compteur réel de base pour garder l'aspect autoritaire tout en comptant les vrais clics
-    if(tvEl && trueTotalVisits) { tvEl.dataset.target = trueTotalVisits; }
 
     document.querySelectorAll('.stat-number').forEach(el => {
       const target = parseFloat(el.dataset.target);
@@ -1614,6 +1610,7 @@ body::after{
 <script src="live-counter.js"></script>
 </body>
 </html>
+
 
 
 
